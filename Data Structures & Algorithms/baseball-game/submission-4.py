@@ -1,0 +1,19 @@
+class Solution:
+    def calPoints(self, operations: List[str]) -> int:
+        stack = []
+        result = 0
+        for op in operations:
+            print(stack)
+            if op == '+':
+                stack.append(stack[-1] + stack[-2])
+            elif op == 'D':
+                stack.append(2 * stack[-1])
+            elif op == 'C':
+                stack.pop()
+            else:
+                stack.append(int(op))
+        
+        for s in stack:
+            result = result + int(s)
+        
+        return result
