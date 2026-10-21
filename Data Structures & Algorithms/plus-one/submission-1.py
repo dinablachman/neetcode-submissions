@@ -1,0 +1,25 @@
+from collections import deque
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        cur = len(digits) - 1
+        if digits[cur] != 9:
+            digits[cur] = digits[cur] + 1
+            return digits
+        while digits[cur] == 9:
+            digits[cur] = 0
+            cur = cur - 1
+        if cur < 0:
+            q = deque(digits)
+            q.appendleft(1)
+            digits.clear()
+            for i in range(len(q)):
+                digits.append(q.popleft())
+        else:
+            digits[cur] = digits[cur] + 1
+
+        return digits
+
+        #case 1: 12345
+        #case 2: 12983
+        #case 3: 99999
+        #case 4: 54999
